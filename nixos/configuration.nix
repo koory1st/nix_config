@@ -16,7 +16,11 @@
 
   networking.hostName = "nixos"; # Define your hostname.
 
+  networking.proxy.httpProxy="http://127.0.0.1:20171";
+  networking.proxy.httpsProxy="http://127.0.0.1:20171";
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nixpkgs.config.allowUnfree = true;
 
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
