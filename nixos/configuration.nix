@@ -46,8 +46,28 @@
 
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
+  fonts = {
+    fonts = with pkgs; [
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+      # sarasa-gothic # 更纱黑体
+      # source-code-pro
+      hack-font
+      jetbrains-mono
+    ];
+  };
+  i18n.inputMethod = {
+    type = "fcitx5";
+    enable = true;
+    fcitx5.addons = with pkgs; [
+      rime-data # 如果你不需要内置数据可以注释掉，我就注释掉了
+      fcitx5-gtk
+      fcitx5-rime
+      fcitx5-nord # 主题
+    ];
+  };
   
-
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
