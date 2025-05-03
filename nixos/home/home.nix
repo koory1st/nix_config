@@ -11,6 +11,7 @@
     ./archive
     ./terminal
     ./fcitx5
+    ./vscode
   ];
 
   # 注意修改这里的用户名与用户目录
@@ -46,7 +47,6 @@
     neofetch
     nnn # terminal file manager
 
-    vscode
     inetutils
 
     
