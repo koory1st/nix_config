@@ -12,5 +12,6 @@
       jetbrains.rust-rover
 
       bacon
+      cargo-expand
   ];
 }

@@ -2,7 +2,8 @@
 
 {
   imports = [
-    ./lazygit
+    ./git/lazygit
+    ./git/jujutsu
     ./neovim
     ./zsh
     ./coding/rust
