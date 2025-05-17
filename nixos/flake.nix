@@ -3,6 +3,9 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nix-darwin.url = "github:nix-darwin/nix-darwin/master";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     # home-manager, used for managing user configuration
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
@@ -15,22 +18,31 @@
     vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
-  outputs = { self, nixpkgs, home-manager, vscode-server, ... }@inputs: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./configuration.nix
-        
-        vscode-server.nixosModules.default ({ config, pkgs, ... }: {
-          services.vscode-server.enable = true;
-        })
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.levy = import ./home/home.nix;
-        }
-      ];
+  outputs = { self, nixpkgs, home-manager, vscode-server, nix-darwin, ... }@inputs: {
+    nixosConfigurations = {
+      nixos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./host/nixos/nixos_configuration.nix
+          
+          vscode-server.nixosModules.default ({ config, pkgs, ... }: {
+            services.vscode-server.enable = true;
+          })
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.levy = import ./home/home.nix;
+          }
+        ];
+      };
+      x86_darwin = nix-darwin.lib.darwinSystem {
+        system = "x86_64-darwin";
+        modules = [
+          ./hosts/mac/configuration.nix
+        ];
+        specialArgs = { inherit inputs; };
+      };
     };
   };
 }
