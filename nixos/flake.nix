@@ -38,8 +38,15 @@
       };
     };
     darwinConfigurations."levy-mac1" = nix-darwin.lib.darwinSystem  {
+      system = "x86_64-darwin";
       modules = [
         ./host/mac/mac_configuration.nix
+        home-manager.darwinModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.levygu = import ./home/home_mac.nix;
+        }
       ];
       specialArgs = { inherit inputs; };
     };
