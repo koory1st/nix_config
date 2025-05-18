@@ -2,8 +2,8 @@
   description = "A simple NixOS flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     # home-manager, used for managing user configuration
@@ -36,13 +36,12 @@
           }
         ];
       };
-      x86_darwin = nix-darwin.lib.darwinSystem {
-        system = "x86_64-darwin";
-        modules = [
-          ./hosts/mac/configuration.nix
-        ];
-        specialArgs = { inherit inputs; };
-      };
+    };
+    darwinConfigurations."levy-mac1" = nix-darwin.lib.darwinSystem  {
+      modules = [
+        ./host/mac/mac_configuration.nix
+      ];
+      specialArgs = { inherit inputs; };
     };
   };
 }
