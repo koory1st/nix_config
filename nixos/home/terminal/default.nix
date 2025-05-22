@@ -8,8 +8,9 @@
 
   programs.tmux = {
     enable = true;
-    # shell = "${pkgs.zsh}/bin/zsh";
-    # clock24 = true;
+    baseIndex = 1;
+    shell = "/bin/zsh";
+    clock24 = true;
     plugins = [
       {
         plugin = pkgs.tmuxPlugins.resurrect;
@@ -19,6 +20,7 @@
     extraConfig = ''
       set -g status-right '#[fg=black,bg=color15] #{cpu_percentage}  %H:%M '
       run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
+      set-option -g default-shell $SHELL
     '';
   };
 

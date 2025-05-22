@@ -4,6 +4,9 @@
   home.packages = with pkgs;[
     zsh
     starship
+    ripgrep
+    fd
+    fzf
     antigen
     zoxide
     zsh-autosuggestions

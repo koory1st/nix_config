@@ -10,7 +10,6 @@
       gcc
       vscode-extensions.rust-lang.rust-analyzer
       jetbrains.rust-rover
-
       bacon
       cargo-expand
   ];
