@@ -7,7 +7,7 @@
     ./git/jujutsu
     ./neovim
     ./archive
-    ./terminal
+    ./tmux
     ./coding/rust
     ./coding/rust/mac.nix
   ];

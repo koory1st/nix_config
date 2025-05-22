@@ -10,7 +10,7 @@
     ./coding/python
     ./coding/android
     ./archive
-    ./terminal
+    ./tmux
     ./fcitx5
     ./vscode
   ];
