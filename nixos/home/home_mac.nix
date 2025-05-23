@@ -10,6 +10,7 @@
     ./tmux
     ./coding/rust
     ./coding/rust/mac.nix
+    ./editor/zed
   ];
 
   # 注意修改这里的用户名与用户目录
