@@ -49,17 +49,17 @@
 
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
-  fonts = {
-    fonts = with pkgs; [
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-cjk-serif
-      # sarasa-gothic # 更纱黑体
-      # source-code-pro
-      hack-font
-      jetbrains-mono
-    ];
-  };
+  # fonts.packages = [
+  #   pkgs.nerd-fonts._0xproto
+  #   pkgs.nerd-fonts.droid-sans-mono
+  #   pkgs.hack-font
+  #   pkgs.jetbrains-mono
+  #   pkgs.noto-fonts
+  #   pkgs.noto-fonts-cjk-sans
+  #   pkgs.noto-fonts-cjk-serif
+  #   # sarasa-gothic # 更纱黑体
+  #   # source-code-pro
+  # ];
   i18n.inputMethod = {
     type = "fcitx5";
     enable = true;
@@ -112,6 +112,7 @@
     wget
     git
     nerdfonts
+    hack-font
   ];
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
